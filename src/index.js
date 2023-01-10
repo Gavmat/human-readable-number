@@ -1,4 +1,4 @@
-module.exports = function toReadable(number) {
+module.exports = function toReadable(num) {
     let frst = {
         0: 'zero',
         1: 'one',
@@ -14,16 +14,16 @@ module.exports = function toReadable(number) {
     }
 
     let scnd = {
-        11: 'eleven',
-        12: 'twelve',
-        13: 'thirteen',
-        14: 'fourteen',
-        15: 'fifteen',
-        16: 'sixteen',
-        17: 'seventeen',
-        18: 'eighteen',
-        19: 'nineteen',
-        20: 'twenty',
+        1: 'eleven',
+        2: 'twelve',
+        3: 'thirteen',
+        4: 'fourteen',
+        5: 'fifteen',
+        6: 'sixteen',
+        7: 'seventeen',
+        8: 'eighteen',
+        9: 'nineteen',
+        0: 'twenty',
     }
 
     let thrd = {
@@ -38,35 +38,34 @@ module.exports = function toReadable(number) {
         9: 'ninety',
     }
 
-    if (number >= 0 && number <= 10) {
-        return console.log(frst[number]);
+    if (num >= 0 && num <= 10) {
+        return frst[num];
     }
 
-    if (number > 10 && number < 21) {
-        return console.log(scnd[number]);
+    if (num > 10 && num < 21) {
+        return scnd[num.toString()[1]];
     }
 
-    if (number > 20 && number < 100) {
-        if (number.toString()[1] == "0") {
-            return console.log(thrd[number.toString()[0]]);
+    if (num > 20 && num < 100) {
+        if (num.toString()[1] == "0") {
+            return thrd[num.toString()[0]];
         } else {
-            return console.log(thrd[number.toString()[0]] + " " + frst[number.toString()[1]]);
+            return thrd[num.toString()[0]] + " " + frst[num.toString()[1]];
         }
     }
 
-    if (number > 99 && number < 1000) {
-        if (number.toString()[1] == "0" && number.toString()[2] == "0")
-            return console.log(frst[number.toString()[0]] + " hundred");
-        if (number.toString()[1] == "0")
-            return console.log(frst[number.toString()[0]] + " hundred " + frst[number.toString()[2]]);
-        if (number.toString()[1] == "1" && number.toString()[2] == 0)
-            return console.log(frst[number.toString()[0]] + " hundred ten");
-        if (number.toString()[1] == "1")
-            return console.log(frst[number.toString()[0]] + " hundred " + scnd[number.toString().split(2).join("")]);
-        if (number.toString()[2] == "0")
-            return console.log(frst[number.toString()[0]] + " hundred " + thrd[number.toString()[1]]);
+    if (num > 99 && num < 1000) {
+        if (num.toString()[1] == "0" && num.toString()[2] == "0")
+            return frst[num.toString()[0]] + " hundred";
+        if (num.toString()[1] == "0")
+            return frst[num.toString()[0]] + " hundred " + frst[num.toString()[2]];
+        if (num.toString()[1] == "1" && num.toString()[2] == 0)
+            return frst[num.toString()[0]] + " hundred ten";
+        if (num.toString()[1] == "1")
+            return frst[num.toString()[0]] + " hundred " + scnd[num.toString()[2]]
+        if (num.toString()[2] == "0")
+            return frst[num.toString()[0]] + " hundred " + thrd[num.toString()[1]];
         else
-            return console.log(frst[number.toString()[0]] + " hundred " + thrd[number.toString()[1]] + " " + frst[number.toString()[2]]);
+            return frst[num.toString()[0]] + " hundred " + thrd[num.toString()[1]] + " " + frst[num.toString()[2]];
     }
 }
-
